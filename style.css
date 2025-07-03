@@ -1,0 +1,2783 @@
+/* Custom CSS for Nitin Kumar Gond's Developer Portfolio */
+
+/* --- Global Body Reset --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #000000; /* Pure Black Background */
+    color: #e0e6f0;
+    overflow-x: hidden;
+    margin: 0; /* Remove default browser gaps */
+}
+
+/* --- Enable Smooth Scrolling for the whole page --- */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Header & Navigation --- */
+.header-bg {
+    /* --- Layout & Positioning --- */
+    position: sticky; /* Makes the navbar stick to the top */
+    top: 1.5rem;      /* Adds some space from the top edge */
+    z-index: 1000;
+    max-width: 1200px;
+    margin: 1.5rem auto; /* Centers the navbar */
+    padding: 1rem 2rem;
+    /* --- UPDATE TRANSITION --- */
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    overflow: hidden; /* Important for containing the pseudo-element */
+
+    /* --- 3D Effect & Glassmorphism --- */
+    transform: perspective(1200px) rotateX(10deg); /* Initial 3D tilt */
+    background: rgba(24, 24, 36, 0.75); /* Dark, semi-transparent base */
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border-radius: 2.5rem;
+    border: 1px solid rgba(163, 101, 247, 0.18);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35); /* Enhanced shadow for depth */
+}
+
+.header-bg:hover {
+    transform: perspective(1200px) rotateX(0deg) translateY(-5px); /* Flatten and lift on hover */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+}
+
+/* --- Animated Shiny Background --- */
+.header-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, #6a40e8, #a365f7, #c471ed, #8c8cff, #6a40e8);
+    background-size: 400% 400%;
+    opacity: 0.4; /* Increased opacity for better visibility */
+    z-index: -1;   /* Place it behind the nav content */
+    animation: slideGradient 5s ease infinite; /* Faster animation */
+}
+
+/* Hide header on scroll down, show on scroll up */
+.header-hidden {
+    top: -120px; /* Hides the header by moving it off-screen */
+}
+
+/* --- Navbar Brand/Logo Styling --- */
+.nav-brand {
+    gap: 0.75rem; /* Space between photo and name */
+    transition: transform 0.3s ease;
+}
+
+.nav-brand:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.nav-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(163, 101, 247, 0.5);
+    box-shadow: 0 0 10px rgba(163, 101, 247, 0.3);
+}
+
+.nav-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #e0e6f0;
+    letter-spacing: 0.5px;
+}
+
+/* --- Hero Section Layout --- */
+/* This will be the container for your main hero content */
+.hero-container {
+    min-height: calc(100vh - 120px); /* Fill viewport minus header space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+    overflow: hidden; /* Prevent content from showing before animation */
+}
+
+/* --- Hero Content Entrance Animation --- */
+/* Define the animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- FIX: More explicit animation rules for reliability --- */
+
+/* Set initial state for all hero elements to be animated */
+.hero-intro, .hero-name, .hero-dynamic-text, .hero-socials, .hero-buttons {
+    opacity: 0;
+}
+
+/* Apply the full animation property to each element individually */
+.hero-intro {
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+.hero-name {
+    animation:
+        fadeInUp 0.8s ease-out 0.4s forwards,
+        slideGradient 3s linear 0.4s infinite;
+}
+.hero-dynamic-text {
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+}
+.hero-socials {
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+}
+.hero-buttons {
+    animation: fadeInUp 0.8s ease-out 1.0s forwards;
+}
+
+/* --- Themed Typed.js Effect --- */
+/* Apply a sliding gradient and glow to the typed text */
+.hero-dynamic-text #typed-element {
+    /* 1. Sliding Gradient Background (like your name) */
+    background: linear-gradient(90deg, #c471ed, #a365f7, #8c8cff, #c471ed); /* Looping gradient */
+    background-size: 200% auto; /* Make gradient larger than text */
+
+    /* 2. Clip the background to the text shape */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* 3. Glow Effect (like the buttons) */
+    text-shadow: 0 0 12px rgba(163, 101, 247, 0.6);
+
+    /* 4. Apply the sliding animation */
+    animation: slideGradient 4s linear infinite;
+}
+
+/* Style the Typed.js cursor */
+#typed-element + .typed-cursor {
+    color: #a365f7;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(163, 101, 247, 0.5); /* Add a matching glow */
+}
+
+
+/* --- Subtitle Highlight Effect --- */
+.hero-statement .highlight-word {
+    color: #c471ed; /* A bright purple from the theme */
+    font-weight: 500;
+    animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Stagger the animation for each word */
+.hero-statement .highlight-word:nth-of-type(2) {
+    animation-delay: 0.3s;
+}
+.hero-statement .highlight-word:nth-of-type(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        color: #c471ed;
+        text-shadow: 0 0 5px rgba(196, 113, 237, 0.4);
+    }
+    50% {
+        color: #e6c8fa; /* A lighter, brighter purple for the pulse */
+        text-shadow: 0 0 16px rgba(196, 113, 237, 1);
+    }
+}
+
+
+/* --- Social Icon Hover Effects --- */
+.hero-socials a {
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    position: relative; /* Required for the shine pseudo-element */
+    overflow: hidden;   /* This will contain the shine effect */
+}
+
+/* The shine element */
+.hero-socials a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -110%;
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.7s ease;
+}
+
+.hero-socials a:hover {
+    transform: translateY(-4px) scale(1.1);
+    color: #a365f7; /* Brighter purple for the icon */
+    text-shadow: 0 0 15px rgba(163, 101, 247, 0.7); /* Add a glow */
+}
+
+/* Animate the shine to sweep across on hover */
+.hero-socials a:hover::before {
+    left: 110%;
+}
+
+
+/* --- Consistent Section Spacing --- */
+/* Use this class on #about, #skills, #projects, etc. */
+.content-section {
+    padding: 6rem 1rem; /* Consistent 6rem top/bottom padding */
+}
+
+/* Navigation Item Hover Effect */
+.nav-item {
+    position: relative;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none; /* No underline by default */
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.2em;
+    height: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed);
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-item:hover::after,
+.nav-item:focus::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* Prevent default underline on navbar links, keep only the animated one */
+.nav-item:hover, .nav-item:focus {
+    text-decoration: none !important;
+}
+
+/* --- FIX: More Robust Rules for Icon/Text Switching --- */
+
+/* By default (horizontal nav), show ONLY the text */
+.header-bg:not(.vertical-nav) .nav-text {
+    display: block;
+}
+.header-bg:not(.vertical-nav) .nav-icon {
+    display: none;
+}
+
+/* When the nav is vertical, show ONLY the icon */
+.header-bg.vertical-nav .nav-text {
+    display: none;
+}
+.header-bg.vertical-nav .nav-icon {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* Glow Button Styling */
+.glow-button {
+    background: linear-gradient(90deg, #a365f7, #8c8cff, #6a40e8);
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    box-shadow: 0 0 16px 0 #a365f7;
+    transition: box-shadow 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-button:hover {
+    box-shadow: 0 0 32px 4px #c471ed, 0 0 16px 0 #a365f7;
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* Remove underline from Resume button */
+.glow-button, .glow-button:link, .glow-button:visited, .glow-button:hover, .glow-button:active {
+    text-decoration: none !important;
+}
+
+.text-left {
+    margin-left: 100px;
+    text-align: left;
+}
+/* Matrix Effect Container (for JavaScript controlled canvas) */
+.matrix-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%; /* Adjust as needed */
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Matrix Text Animation (if using pure CSS text animation) */
+/* The current solution uses a canvas for better performance and customization */
+
+.matrix-text {
+    white-space: pre;
+    font-family: 'monospace';
+    font-size: 0.8rem;
+    color: #0f0;
+    opacity: 0.2;
+    line-height: 1;
+    animation: matrix-fall 10s linear infinite;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-100%);
+}
+
+@keyframes matrix-fall {
+    0% { transform: translateY(-100%); opacity: 0.2; }
+    5% { opacity: 0.5; }
+    100% { transform: translateY(100%); opacity: 0.2; }
+}
+ 
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(90deg, #a365f7, #8c8cff, #6a40e8, #c471ed, #a365f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    /* Animation removed to prevent conflict with hero entrance animation */
+}
+
+/* Section Header Styling */
+.section-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 250px; /* Made wider */
+    height: 5px;  /* Made thicker */
+    border-radius: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed);
+    opacity: 0.8;
+    box-shadow: 0 3px 12px rgba(163, 101, 247, 0.4); /* Added glow */
+}
+
+/* Card Styling for sections like About, Skills, Projects, Education */
+.card {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px 0 rgba(140, 100, 255, 0.10);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid #a365f7;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 1.5rem; /* Ensure consistent internal padding */
+}
+.card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px 0 #a365f7;
+}
+
+/* --- Preloader Styles --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column; /* Stack photo and text vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 2rem; /* Space between photo and text */
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+    visibility: visible;
+    opacity: 1;
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-photo {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Prevents image distortion */
+    border: 4px solid #a365f7; /* Matching purple border */
+    box-shadow: 0 0 20px rgba(163, 101, 247, 0.5); /* Adds a nice glow */
+    opacity: 0;
+    transform: scale(0.5);
+    animation: logo-pop-in 1s ease-out 0.2s forwards;
+}
+
+.preloader-text {
+    font-family: 'monospace', 'Courier New', Courier;
+    /* Use clamp() for a fluid font size that adapts to any screen */
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
+    font-weight: bold;
+    color: #a365f7;
+    text-shadow: 0 0 10px #a365f7;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid #8c8cff;
+    max-width: 95vw; /* Allow a bit more width to ensure visibility */
+    opacity: 0;
+    animation:
+        text-fade-in 0.5s ease-out 1.2s forwards;
+}
+
+/* Keyframes for Photo */
+@keyframes logo-pop-in {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Keyframes for Text Container Fade-in */
+@keyframes text-fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Typing Animation */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Cursor Blinking Animation */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #8c8cff; }
+}
+
+/* Main Content Visibility */
+#main-content.hidden {
+    opacity: 0;
+}
+
+#main-content.visible {
+    opacity: 1;
+    transition: opacity 0.8s ease-in;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .header-bg {
+        margin: 16px auto;
+        max-width: 95vw;
+    }
+    .content-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    .hero-container {
+        min-height: auto; /* Let content define height on mobile */
+        padding: 4rem 1rem;
+        text-align: center; /* Center text on mobile */
+    }
+    .hero-container .text-left {
+        text-align: center; /* Ensure hero text is centered */
+    }
+}
+
+/* --- Contact Panel --- */
+.contact-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100%;
+    z-index: 10001;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: rgba(26, 16, 38, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-right: 1px solid rgba(163, 101, 247, 0.2);
+    box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Vertically center the content */
+    padding: 2rem;
+    color: #e0e6f0;
+    border-top-right-radius: 2rem; /* Curved top right corner */
+    border-bottom-right-radius: 2rem; /* Curved bottom right corner */
+}
+
+.contact-panel.open {
+    transform: translateX(0);
+}
+
+/* --- Animate Panel Content --- */
+/* Set initial state for all animated elements */
+.panel-photo, .panel-name, .panel-title, .contact-link {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Define the final state when the panel is open, with staggered delays */
+.contact-panel.open .panel-photo {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+.contact-panel.open .panel-name {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+.contact-panel.open .panel-title {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.4s;
+}
+
+/* Stagger the links */
+.contact-panel.open .contact-link:nth-child(1) { transform: translateY(0); opacity: 1; transition-delay: 0.5s; }
+.contact-panel.open .contact-link:nth-child(2) { transform: translateY(0); opacity: 1; transition-delay: 0.6s; }
+.contact-panel.open .contact-link:nth-child(3) { transform: translateY(0); opacity: 1; transition-delay: 0.7s; }
+.contact-panel.open .contact-link:nth-child(4) { transform: translateY(0); opacity: 1; transition-delay: 0.8s; }
+
+
+.panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+}
+
+.panel-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #e0e6f0;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.close-btn:hover {
+    color: #c471ed;
+    transform: rotate(90deg);
+}
+
+.panel-content {
+    text-align: center;
+    /* The margin-top is removed to allow for perfect vertical centering */
+}
+
+.panel-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #a365f7;
+    box-shadow: 0 0 25px rgba(163, 101, 247, 0.6);
+    margin-bottom: 1.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(20px) scale(0.9); /* Add initial scale for a pop effect */
+}
+
+.panel-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.panel-title {
+    font-size: 1rem;
+    color: #c471ed;
+    margin-bottom: 2.5rem;
+}
+
+.panel-contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: #e0e6f0;
+    /* --- FIX & ENHANCEMENT --- */
+    /* Combine all transitions to enable slide-in and all hover effects */
+    transition: 
+        opacity 0.1s ease-out, 
+        transform 0.3s ease, 
+        background 0.3s ease, 
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.contact-link:hover {
+    /* --- ENHANCED HOVER EFFECT --- */
+    background: #a365f7;
+    color: #fff;
+    transform: translateY(-3px) scale(1.05); /* Lift and scale the link */
+    box-shadow: 0 4px 20px rgba(163, 101, 247, 0.4); /* Add a glow effect */
+    transition-delay: 0s; /* FIX: Override entrance delay for instant hover */
+}
+
+.contact-link .fa-fw {
+    /* --- Glassy Icon Effect --- */
+    height: 40px;
+    width: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08); /* Glassy background */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Smoky shadow */
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; /* Add transition for the icon */
+}
+
+/* Animate the icon when the link is hovered */
+.contact-link:hover .fa-fw {
+    background: rgba(255, 255, 255, 0.2); /* Brighter glass on hover */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* White glow */
+    transform: scale(1.2) rotate(-5deg);
+}
+
+/* --- Sequential Animated Page Border --- */
+/* This creates a single line that travels around the entire page border. */
+
+/* Top Border Line */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0; /* Starts with no width */
+    height: 3px; /* Made thicker */
+    background: linear-gradient(90deg, #c471ed, #8c8cff);
+    box-shadow: 0 0 10px #a365f7;
+    z-index: 10002;
+    pointer-events: none;
+    animation: travel-top 6s linear infinite; /* Made faster */
+}
+
+/* Right Border Line */
+html::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 3px; /* Made thicker */
+    height: 0; /* Starts with no height */
+    background: linear-gradient(180deg, #c471ed, #8c8cff);
+    box-shadow: 0 0 10px #a365f7;
+    z-index: 10002;
+    pointer-events: none;
+    animation: travel-right 6s linear infinite; /* Made faster */
+}
+
+/* Bottom Border Line */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 0; /* Starts with no width */
+    height: 3px; /* Made thicker */
+    background: linear-gradient(-90deg, #c471ed, #8c8cff);
+    box-shadow: 0 0 10px #a365f7;
+    z-index: 10002;
+    pointer-events: none;
+    animation: travel-bottom 6s linear infinite; /* Made faster */
+}
+
+/* Left Border Line */
+html::before {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 3px; /* Made thicker */
+    height: 0; /* Starts with no height */
+    background: linear-gradient(0deg, #c471ed, #8c8cff);
+    box-shadow: 0 0 10px #a365f7;
+    z-index: 10002;
+    pointer-events: none;
+    animation: travel-left 6s linear infinite; /* Made faster */
+}
+
+/* Keyframe Animations for each border to run sequentially */
+@keyframes travel-top {
+    0%      { width: 0; opacity: 1; }
+    25%     { width: 100%; opacity: 1; }
+    25.01%  { opacity: 0; }
+    100%    { opacity: 0; }
+}
+
+@keyframes travel-right {
+    0%      { height: 0; opacity: 0; }
+    25%     { height: 0; opacity: 1; }
+    50%     { height: 100%; opacity: 1; }
+    50.01%  { opacity: 0; }
+    100%    { opacity: 0; }
+}
+
+@keyframes travel-bottom {
+    0%      { width: 0; opacity: 0; }
+    50%     { width: 0; opacity: 1; }
+    75%     { width: 100%; opacity: 1; }
+    75.01%  { opacity: 0; }
+    100%    { opacity: 0; }
+}
+
+@keyframes travel-left {
+    0%      { height: 0; opacity: 0; }
+    75%     { height: 0; opacity: 1; }
+    100%    { height: 100%; opacity: 1; }
+}
+
+/* --- NEW: About Section UI Design --- */
+.about-image-container {
+    position: relative;
+    padding: 8px; /* Creates space for the gradient border */
+    border-radius: 50%; /* Make it a circle */
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.5), rgba(140, 140, 255, 0.5));
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* Make it smaller and center it */
+    max-width: 280px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1; /* Ensure it's a perfect circle */
+}
+
+.about-image-container:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 16px 40px rgba(163, 101, 247, 0.3);
+}
+
+.about-image {
+    width: 100%;
+    height: 100%; /* Make it fill the container */
+    display: block;
+    border-radius: 50%; /* Make it a circle */
+    object-fit: cover;
+}
+
+.about-highlight-card {
+    background: rgba(44, 20, 70, 0.6); /* Matches .card but slightly different */
+    border: 1px solid rgba(163, 101, 247, 0.2);
+    border-radius: 1rem;
+    padding: 1.25rem 1rem;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.about-highlight-card:hover {
+    background: rgba(60, 30, 90, 0.8);
+    transform: translateY(-5px);
+}
+
+.about-highlight-card i {
+    color: #c471ed;
+    text-shadow: 0 0 8px rgba(196, 113, 237, 0.5);
+}
+
+/* --- Keyframes for Sliding Gradient (used in multiple places) --- */
+@keyframes slideGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- NEW: About Section Text Background --- */
+.about-text-container {
+    background: rgba(44, 20, 70, 0.7); /* Deeper purple glass effect */
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border-radius: 1.5rem;
+    border: 1.5px solid #a365f7;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 32px 0 rgba(163, 101, 247, 0.18);
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    color: #e0e6f0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 1;
+}
+
+.about-text-container h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #a365f7, #c471ed, #8c8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 16px rgba(163, 101, 247, 0.25);
+}
+
+.about-text-container p {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: #e0e6f0;
+    margin-bottom: 0.5rem;
+}
+
+.about-text-container p:last-child {
+    margin-bottom: 0;
+}
+
+.about-text-container strong,
+.about-text-container b {
+    color: #c471ed;
+    font-weight: 600;
+}
+
+.about-text-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    background: linear-gradient(120deg, rgba(163,101,247,0.13), rgba(196,113,237,0.09), rgba(140,140,255,0.13));
+    background-size: 300% 300%;
+    animation: slideGradient 8s ease infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+.about-text-container > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Enhanced Card Hover Effects --- */
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.2), rgba(196, 113, 237, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Improved Button Styles --- */
+.glow-button {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.glow-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(90deg, rgba(163, 101, 247, 0.7), rgba(196, 113, 237, 0.7));
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+
+.glow-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.glow-button:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(163, 101, 247, 0.7);
+}
+
+/* --- Enhanced Social Media Icons --- */
+.hero-socials a {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    color: #e0e6f0;
+    transition: color 0.3s ease;
+}
+
+.hero-socials a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.3), rgba(196, 113, 237, 0.3));
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+
+.hero-socials a:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.hero-socials a:hover {
+    color: #a365f7;
+    text-shadow: 0 0 8px rgba(163, 101, 247, 0.7);
+}
+
+/* --- New Section: Skills --- */
+#skills {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Skill Bars */
+.skill-bar {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.skill-bar:hover {
+    background: rgba(60, 30, 90, 0.8);
+}
+
+.skill-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(163, 101, 247, 0.7), rgba(196, 113, 237, 0.7));
+    transition: width 0.4s ease;
+    z-index: 1;
+}
+
+/* --- Projects Section Styles --- */
+#projects {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px; /* Adjust max-width as needed */
+    margin: 0 auto; /* This centers the grid container */
+}
+
+.project-card {
+    position: relative;
+    aspect-ratio: 1 / 1; /* This creates the square shape */
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1.5px solid #a365f733;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 48px rgba(163, 101, 247, 0.3);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(16, 1, 36, 0.95) 20%, rgba(16, 1, 36, 0.4) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    color: #e0e6f0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.2s;
+}
+
+.project-links {
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.3s;
+}
+
+.project-card:hover .project-title,
+.project-card:hover .project-description,
+.project-card:hover .project-links {
+    transform: translateY(0);
+}
+
+.project-link {
+    color: #c471ed;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 1rem;
+    transition: color 0.3s;
+}
+
+.project-link:hover {
+    color: #fff;
+}
+
+.project-link i {
+    margin-right: 0.5rem;
+}
+
+/* --- New Section: Contact --- */
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1.5rem;
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px 0 #a365f7;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.2), rgba(196, 113, 237, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Global Link Styles --- */
+a {
+    color: #a365f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #c471ed;
+    text-decoration: underline;
+}
+
+/* --- Accessibility Improvements --- */
+:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+button:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+/* --- Performance Optimizations --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Remove unused CSS rules */
+/* Minify CSS */
+
+/* --- Security Enhancements --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Sanitize CSS to remove any potentially harmful rules */
+/* Enforce strict MIME type checking for stylesheets */
+
+.shiny-divider {
+    width: 90%;
+    height: 4px;
+    margin: 4rem auto 4rem auto;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed, #8c8cff, #a365f7);
+    box-shadow: 0 0 18px 2px #a365f7, 0 0 32px 8px #c471ed44;
+    position: relative;
+    overflow: hidden;
+    animation: slideGradient 6s linear infinite;
+    background-size: 200% 100%;
+}
+
+/* Tech Stack Slider Styles */
+.tech-stack-slider-outer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: rgba(44, 20, 70, 0.5);
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(163, 101, 247, 0.10);
+    border: 1px solid rgba(163, 101, 247, 0.15);
+}
+
+.tech-stack-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the entire slider */
+    gap: 0;
+    animation: tech-slide 28s linear infinite;
+    min-width: max-content;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-width: 120px;       /* Increased for better spacing */
+    padding: 1.2rem 1rem;   /* Even padding */
+    color: #c471ed;
+    font-size: 2.1rem;
+    font-weight: 600;
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-align: center;     /* Center text content */
+}
+
+.tech-item i {
+    display: flex;          /* Center the icon */
+    align-items: center;    /* Center vertically */
+    justify-content: center;/* Center horizontally */
+    margin-bottom: 0.6rem;  /* Space between icon and text */
+    filter: drop-shadow(0 2px 8px #a365f7aa);
+    transition: color 0.2s, filter 0.2s;
+    width: 100%;           /* Full width for centering */
+}
+
+.tech-item span {
+    font-size: 1rem;
+    color: #e0e6f0;
+    letter-spacing: 0.03em;
+    text-align: center;    /* Center text */
+    width: 100%;          /* Full width for centering */
+    text-shadow: 0 1px 8px #a365f733;
+}
+
+.tech-item:hover {
+    color: #fff;
+    transform: scale(1.12) translateY(-6px);
+    text-shadow: 0 2px 16px #a365f7, 0 0 8px #c471ed;
+}
+
+.tech-item:hover i {
+    color: #fff;
+    filter: drop-shadow(0 4px 16px #c471edcc);
+}
+
+@keyframes tech-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Center the section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* --- New Skills Section Styles --- */
+.skills-subtitle {
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 2.5rem 0 1.2rem 0;
+    color: #c471ed;
+    text-shadow: 0 2px 12px #a365f7aa;
+    position: relative;
+    z-index: 2;
+}
+
+/* Language, Framework, Database, Tool Sliders */
+.languages-slider { animation: tech-slide 22s linear infinite; }
+.frameworks-slider { animation: tech-slide 22s linear infinite; }
+.databases-slider { animation: tech-slide 22s linear infinite; }
+.tools-slider { animation: tech-slide 22s linear infinite; }
+
+/* Experience Section Styles */
+#experience {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2rem;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 5rem; /* Space for the icon and line */
+}
+
+.experience-icon {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.8rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.experience-content {
+    position: relative;
+    width: 100%; /* Fix: Changed from 50% to 100% to fill the container */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 2rem; /* Adjusted padding for consistency */
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.experience-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.experience-company {
+    font-style: italic;
+    color: #a365f7;
+    font-weight: 500;
+}
+
+.experience-date {
+    color: #c471ed;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.experience-details {
+    list-style: none;
+    padding-left: 0;
+    color: #e0e6f0;
+}
+
+.experience-details li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.experience-details li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a365f7;
+    font-weight: bold;
+}
+
+
+/* Education Section Styles */
+#education {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px; /* Increased width for better spacing */
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+}
+
+/* Position odd entries on the left, even on the right */
+.timeline-entry:nth-child(odd) {
+    justify-content: flex-start;
+}
+.timeline-entry:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3.5rem; /* Slightly larger icon */
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.6rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.timeline-content {
+    position: relative;
+    width: calc(50% - 4rem); /* Adjust width for gap */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+/* --- Contact Section --- */
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1.5rem;
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px 0 #a365f7;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.2), rgba(196, 113, 237, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Global Link Styles --- */
+a {
+    color: #a365f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #c471ed;
+    text-decoration: underline;
+}
+
+/* --- Accessibility Improvements --- */
+:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+button:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+/* --- Performance Optimizations --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Remove unused CSS rules */
+/* Minify CSS */
+
+/* --- Security Enhancements --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Sanitize CSS to remove any potentially harmful rules */
+/* Enforce strict MIME type checking for stylesheets */
+
+.shiny-divider {
+    width: 90%;
+    height: 4px;
+    margin: 4rem auto 4rem auto;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed, #8c8cff, #a365f7);
+    box-shadow: 0 0 18px 2px #a365f7, 0 0 32px 8px #c471ed44;
+    position: relative;
+    overflow: hidden;
+    animation: slideGradient 6s linear infinite;
+    background-size: 200% 100%;
+}
+
+/* Tech Stack Slider Styles */
+.tech-stack-slider-outer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: rgba(44, 20, 70, 0.5);
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(163, 101, 247, 0.10);
+    border: 1px solid rgba(163, 101, 247, 0.15);
+}
+
+.tech-stack-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the entire slider */
+    gap: 0;
+    animation: tech-slide 28s linear infinite;
+    min-width: max-content;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-width: 120px;       /* Increased for better spacing */
+    padding: 1.2rem 1rem;   /* Even padding */
+    color: #c471ed;
+    font-size: 2.1rem;
+    font-weight: 600;
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-align: center;     /* Center text content */
+}
+
+.tech-item i {
+    display: flex;          /* Center the icon */
+    align-items: center;    /* Center vertically */
+    justify-content: center;/* Center horizontally */
+    margin-bottom: 0.6rem;  /* Space between icon and text */
+    filter: drop-shadow(0 2px 8px #a365f7aa);
+    transition: color 0.2s, filter 0.2s;
+    width: 100%;           /* Full width for centering */
+}
+
+.tech-item span {
+    font-size: 1rem;
+    color: #e0e6f0;
+    letter-spacing: 0.03em;
+    text-align: center;    /* Center text */
+    width: 100%;          /* Full width for centering */
+    text-shadow: 0 1px 8px #a365f733;
+}
+
+.tech-item:hover {
+    color: #fff;
+    transform: scale(1.12) translateY(-6px);
+    text-shadow: 0 2px 16px #a365f7, 0 0 8px #c471ed;
+}
+
+.tech-item:hover i {
+    color: #fff;
+    filter: drop-shadow(0 4px 16px #c471edcc);
+}
+
+@keyframes tech-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Center the section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* --- New Skills Section Styles --- */
+.skills-subtitle {
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 2.5rem 0 1.2rem 0;
+    color: #c471ed;
+    text-shadow: 0 2px 12px #a365f7aa;
+    position: relative;
+    z-index: 2;
+}
+
+/* Language, Framework, Database, Tool Sliders */
+.languages-slider { animation: tech-slide 22s linear infinite; }
+.frameworks-slider { animation: tech-slide 22s linear infinite; }
+.databases-slider { animation: tech-slide 22s linear infinite; }
+.tools-slider { animation: tech-slide 22s linear infinite; }
+
+
+
+/* Experience Section Styles */
+#experience {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2rem;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 5rem; /* Space for the icon and line */
+}
+
+.experience-icon {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.8rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.experience-content {
+    position: relative;
+    width: 100%; /* Fix: Changed from 50% to 100% to fill the container */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 2rem; /* Adjusted padding for consistency */
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.experience-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.experience-company {
+    font-style: italic;
+    color: #a365f7;
+    font-weight: 500;
+}
+
+.experience-date {
+    color: #c471ed;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.experience-details {
+    list-style: none;
+    padding-left: 0;
+    color: #e0e6f0;
+}
+
+.experience-details li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.experience-details li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a365f7;
+    font-weight: bold;
+}
+
+
+/* Education Section Styles */
+#education {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px; /* Increased width for better spacing */
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+}
+
+/* Position odd entries on the left, even on the right */
+.timeline-entry:nth-child(odd) {
+    justify-content: flex-start;
+}
+.timeline-entry:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3.5rem; /* Slightly larger icon */
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.6rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.timeline-content {
+    position: relative;
+    width: calc(50% - 4rem); /* Adjust width for gap */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+/* --- Contact Section --- */
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1.5rem;
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px 0 #a365f7;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.2), rgba(196, 113, 237, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Global Link Styles --- */
+a {
+    color: #a365f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #c471ed;
+    text-decoration: underline;
+}
+
+/* --- Accessibility Improvements --- */
+:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+button:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+/* --- Performance Optimizations --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Remove unused CSS rules */
+/* Minify CSS */
+
+/* --- Security Enhancements --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Sanitize CSS to remove any potentially harmful rules */
+/* Enforce strict MIME type checking for stylesheets */
+
+.shiny-divider {
+    width: 90%;
+    height: 4px;
+    margin: 4rem auto 4rem auto;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed, #8c8cff, #a365f7);
+    box-shadow: 0 0 18px 2px #a365f7, 0 0 32px 8px #c471ed44;
+    position: relative;
+    overflow: hidden;
+    animation: slideGradient 6s linear infinite;
+    background-size: 200% 100%;
+}
+
+/* Tech Stack Slider Styles */
+.tech-stack-slider-outer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: rgba(44, 20, 70, 0.5);
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(163, 101, 247, 0.10);
+    border: 1px solid rgba(163, 101, 247, 0.15);
+}
+
+.tech-stack-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the entire slider */
+    gap: 0;
+    animation: tech-slide 28s linear infinite;
+    min-width: max-content;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-width: 120px;       /* Increased for better spacing */
+    padding: 1.2rem 1rem;   /* Even padding */
+    color: #c471ed;
+    font-size: 2.1rem;
+    font-weight: 600;
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-align: center;     /* Center text content */
+}
+
+.tech-item i {
+    display: flex;          /* Center the icon */
+    align-items: center;    /* Center vertically */
+    justify-content: center;/* Center horizontally */
+    margin-bottom: 0.6rem;  /* Space between icon and text */
+    filter: drop-shadow(0 2px 8px #a365f7aa);
+    transition: color 0.2s, filter 0.2s;
+    width: 100%;           /* Full width for centering */
+}
+
+.tech-item span {
+    font-size: 1rem;
+    color: #e0e6f0;
+    letter-spacing: 0.03em;
+    text-align: center;    /* Center text */
+    width: 100%;          /* Full width for centering */
+    text-shadow: 0 1px 8px #a365f733;
+}
+
+.tech-item:hover {
+    color: #fff;
+    transform: scale(1.12) translateY(-6px);
+    text-shadow: 0 2px 16px #a365f7, 0 0 8px #c471ed;
+}
+
+.tech-item:hover i {
+    color: #fff;
+    filter: drop-shadow(0 4px 16px #c471edcc);
+}
+
+@keyframes tech-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Center the section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* --- New Skills Section Styles --- */
+.skills-subtitle {
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 2.5rem 0 1.2rem 0;
+    color: #c471ed;
+    text-shadow: 0 2px 12px #a365f7aa;
+    position: relative;
+    z-index: 2;
+}
+
+/* Language, Framework, Database, Tool Sliders */
+.languages-slider { animation: tech-slide 25s linear infinite; }
+.frameworks-slider { animation: tech-slide 15s linear infinite; }
+.databases-tools-slider { animation: tech-slide 35s linear infinite; }
+
+/* Experience Section Styles */
+#experience {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2rem;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 5rem; /* Space for the icon and line */
+}
+
+.experience-icon {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.8rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.experience-content {
+    position: relative;
+    width: 100%; /* Fix: Changed from 50% to 100% to fill the container */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 2rem; /* Adjusted padding for consistency */
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.experience-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.experience-company {
+    font-style: italic;
+    color: #a365f7;
+    font-weight: 500;
+}
+
+.experience-date {
+    color: #c471ed;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.experience-details {
+    list-style: none;
+    padding-left: 0;
+    color: #e0e6f0;
+}
+
+.experience-details li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.experience-details li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a365f7;
+    font-weight: bold;
+}
+
+
+/* Education Section Styles */
+#education {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px; /* Increased width for better spacing */
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+}
+
+/* Position odd entries on the left, even on the right */
+.timeline-entry:nth-child(odd) {
+    justify-content: flex-start;
+}
+.timeline-entry:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3.5rem; /* Slightly larger icon */
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.6rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.timeline-content {
+    position: relative;
+    width: calc(50% - 4rem); /* Adjust width for gap */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+/* --- Contact Section --- */
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1.5rem;
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px 0 #a365f7;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.2), rgba(196, 113, 237, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Global Link Styles --- */
+a {
+    color: #a365f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #c471ed;
+    text-decoration: underline;
+}
+
+/* --- Accessibility Improvements --- */
+:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+button:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+/* --- Performance Optimizations --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Remove unused CSS rules */
+/* Minify CSS */
+
+/* --- Security Enhancements --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Sanitize CSS to remove any potentially harmful rules */
+/* Enforce strict MIME type checking for stylesheets */
+
+.shiny-divider {
+    width: 90%;
+    height: 4px;
+    margin: 4rem auto 4rem auto;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed, #8c8cff, #a365f7);
+    box-shadow: 0 0 18px 2px #a365f7, 0 0 32px 8px #c471ed44;
+    position: relative;
+    overflow: hidden;
+    animation: slideGradient 6s linear infinite;
+    background-size: 200% 100%;
+}
+
+/* Tech Stack Slider Styles */
+.tech-stack-slider-outer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: rgba(44, 20, 70, 0.5);
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(163, 101, 247, 0.10);
+    border: 1px solid rgba(163, 101, 247, 0.15);
+}
+
+.tech-stack-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the entire slider */
+    gap: 0;
+    animation: tech-slide 28s linear infinite;
+    min-width: max-content;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-width: 120px;       /* Increased for better spacing */
+    padding: 1.2rem 1rem;   /* Even padding */
+    color: #c471ed;
+    font-size: 2.1rem;
+    font-weight: 600;
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-align: center;     /* Center text content */
+}
+
+.tech-item i {
+    display: flex;          /* Center the icon */
+    align-items: center;    /* Center vertically */
+    justify-content: center;/* Center horizontally */
+    margin-bottom: 0.6rem;  /* Space between icon and text */
+    filter: drop-shadow(0 2px 8px #a365f7aa);
+    transition: color 0.2s, filter 0.2s;
+    width: 100%;           /* Full width for centering */
+}
+
+.tech-item span {
+    font-size: 1rem;
+    color: #e0e6f0;
+    letter-spacing: 0.03em;
+    text-align: center;    /* Center text */
+    width: 100%;          /* Full width for centering */
+    text-shadow: 0 1px 8px #a365f733;
+}
+
+.tech-item:hover {
+    color: #fff;
+    transform: scale(1.12) translateY(-6px);
+    text-shadow: 0 2px 16px #a365f7, 0 0 8px #c471ed;
+}
+
+.tech-item:hover i {
+    color: #fff;
+    filter: drop-shadow(0 4px 16px #c471edcc);
+}
+
+@keyframes tech-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Center the section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* --- New Skills Section Styles --- */
+.skills-subtitle {
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 2.5rem 0 1.2rem 0;
+    color: #c471ed;
+    text-shadow: 0 2px 12px #a365f7aa;
+    position: relative;
+    z-index: 2;
+}
+
+/* Language, Framework, Database, Tool Sliders */
+.languages-slider { animation: tech-slide 22s linear infinite; }
+.frameworks-slider { animation: tech-slide 22s linear infinite; }
+.databases-slider { animation: tech-slide 22s linear infinite; }
+.tools-slider { animation: tech-slide 22s linear infinite; }
+
+/* Experience Section Styles */
+#experience {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2rem;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+}
+
+.experience-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 5rem; /* Space for the icon and line */
+}
+
+.experience-icon {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.8rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.experience-content {
+    position: relative;
+    width: 100%; /* Fix: Changed from 50% to 100% to fill the container */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 2rem; /* Adjusted padding for consistency */
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.experience-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.experience-company {
+    font-style: italic;
+    color: #a365f7;
+    font-weight: 500;
+}
+
+.experience-date {
+    color: #c471ed;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.experience-details {
+    list-style: none;
+    padding-left: 0;
+    color: #e0e6f0;
+}
+
+.experience-details li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.experience-details li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #a365f7;
+    font-weight: bold;
+}
+
+
+/* Education Section Styles */
+#education {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px; /* Increased width for better spacing */
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+/* Vertical Line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: linear-gradient(to bottom, rgba(163, 101, 247, 0), #a365f7, rgba(163, 101, 247, 0));
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+}
+
+/* Position odd entries on the left, even on the right */
+.timeline-entry:nth-child(odd) {
+    justify-content: flex-start;
+}
+.timeline-entry:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.timeline-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3.5rem; /* Slightly larger icon */
+    height: 3.5rem;
+    border-radius: 50%;
+    background: rgba(44, 20, 70, 0.8);
+    border: 3px solid #a365f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c471ed;
+    font-size: 1.6rem;
+    z-index: 2;
+    box-shadow: 0 0 12px #a365f7;
+}
+
+.timeline-content {
+    position: relative;
+    width: calc(50% - 4rem); /* Adjust width for gap */
+    background: linear-gradient(120deg, #24143aee 60%, #1a1a2eec 100%);
+    border: 1.5px solid #a365f733;
+    border-radius: 1.5rem;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 32px 0 rgba(163, 101, 247, 0.10);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 40px 0 rgba(163, 101, 247, 0.2);
+}
+
+/* --- Contact Section --- */
+#contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Contact Cards */
+.contact-card {
+    background: rgba(44, 20, 70, 0.7);
+    border-radius: 1.5rem;
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 32px 0 #a365f7;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(163, 101, 247, 0.2), rgba(196, 113, 237, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Global Link Styles --- */
+a {
+    color: #a365f7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #c471ed;
+    text-decoration: underline;
+}
+
+/* --- Accessibility Improvements --- */
+:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+button:focus {
+    outline: 3px solid #8c8cff;
+    outline-offset: 2px;
+}
+
+/* --- Performance Optimizations --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Remove unused CSS rules */
+/* Minify CSS */
+
+/* --- Security Enhancements --- */
+/* Consider adding these in a <style amp-custom> tag in the <head> for AMP compatibility */
+
+/* Sanitize CSS to remove any potentially harmful rules */
+/* Enforce strict MIME type checking for stylesheets */
+
+.shiny-divider {
+    width: 90%;
+    height: 4px;
+    margin: 4rem auto 4rem auto;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #a365f7, #c471ed, #8c8cff, #a365f7);
+    box-shadow: 0 0 18px 2px #a365f7, 0 0 32px 8px #c471ed44;
+    position: relative;
+    overflow: hidden;
+    animation: slideGradient 6s linear infinite;
+    background-size: 200% 100%;
+}
+
+/* Tech Stack Slider Styles */
+.tech-stack-slider-outer {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    background: rgba(44, 20, 70, 0.5);
+    border-radius: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(163, 101, 247, 0.10);
+    border: 1px solid rgba(163, 101, 247, 0.15);
+}
+
+.tech-stack-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the entire slider */
+    gap: 0;
+    animation: tech-slide 28s linear infinite;
+    min-width: max-content;
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    min-width: 120px;       /* Increased for better spacing */
+    padding: 1.2rem 1rem;   /* Even padding */
+    color: #c471ed;
+    font-size: 2.1rem;
+    font-weight: 600;
+    transition: transform 0.2s, color 0.2s, text-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    text-align: center;     /* Center text content */
+}
+
+.tech-item i {
+    display: flex;          /* Center the icon */
+    align-items: center;    /* Center vertically */
+    justify-content: center;/* Center horizontally */
+    margin-bottom: 0.6rem;  /* Space between icon and text */
+    filter: drop-shadow(0 2px 8px #a365f7aa);
+    transition: color 0.2s, filter 0.2s;
+    width: 100%;           /* Full width for centering */
+}
+
+.tech-item span {
+    font-size: 1rem;
+    color: #e0e6f0;
+    letter-spacing: 0.03em;
+    text-align: center;    /* Center text */
+    width: 100%;          /* Full width for centering */
+    text-shadow: 0 1px 8px #a365f733;
+}
+
+.tech-item:hover {
+    color: #fff;
+    transform: scale(1.12) translateY(-6px);
+    text-shadow: 0 2px 16px #a365f7, 0 0 8px #c471ed;
+}
+
+.tech-item:hover i {
+    color: #fff;
+    filter: drop-shadow(0 4px 16px #c471edcc);
+}
+
+@keyframes tech-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Center the section header */
+.section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+/* --- New Skills Section Styles --- */
+.skills-subtitle {
+    text-align: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 2.5rem 0 1.2rem 0;
+    color: #c471ed;
+    text-shadow: 0 2px 12px #a365f7aa;
+    position: relative;
+    z-index: 2;
+}
+
+/* Language, Framework, Database, Tool Sliders */
+.languages-slider { animation: tech-slide 22s linear infinite; }
+.frameworks-slider { animation: tech-slide 22s linear infinite; }
+.databases-slider { animation: tech-slide 22s linear infinite; }
+.tools-slider { animation: tech-slide 22s linear infinite; }

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitin Kumar Gond - Developer Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="antialiased">
+
+    <!-- Preloader Start Page -->
+    <div id="preloader">
+        <!-- Profile Photo -->
+        <img src="bg.png" alt="Nitin Kumar Gond" class="preloader-photo">
+        <div class="preloader-text">👋Hello, Namaste! Welcome to Nitin's Portfolio...</div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <main id="main-content" class="hidden">
+        <header class="header-bg py-4 px-6 shadow-lg">
+            <nav class="container mx-auto flex justify-between items-center">
+                <!-- NEW: Logo/Brand section with Photo and Name -->
+                <div id="open-contact-panel" class="nav-brand flex items-center cursor-pointer">
+                    <img src="profile.jpg" alt="Nitin Kumar Gond" class="nav-photo">
+                    <span class="nav-name">Nitin</span>
+                </div>
+
+                <ul class="hidden md:flex space-x-8">
+                    <li><a href="index.html#" class="nav-item" title="Home"><i class="fas fa-home text-xl"></i></a></li>
+                    <li><a href="index.html#about" class="nav-item">About</a></li>
+                    <li><a href="index.html#skills" class="nav-item">Skills</a></li>
+                    <li><a href="index.html#projects" class="nav-item">Projects</a></li>
+                    <li><a href="index.html#experience" class="nav-item">Experience</a></li>
+                    <li><a href="index.html#education" class="nav-item">Education</a></li>
+                    <li><a href="index.html#contact" class="nav-item">Contact</a></li>
+                </ul>
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </nav>
+            <!-- Mobile menu dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden bg-[#1a1a2e] mt-4 rounded-lg shadow-lg">
+                <ul class="flex flex-col items-center py-4 space-y-4">
+                    <li><a href="index.html#" class="nav-item block w-full text-center">Home</a></li>
+                    <li><a href="index.html#about" class="nav-item block w-full text-center">About</a></li>
+                    <li><a href="index.html#skills" class="nav-item block w-full text-center">Skills</a></li>
+                    <li><a href="index.html#projects" class="nav-item block w-full text-center">Projects</a></li>
+                    <li><a href="index.html#experience" class="nav-item block w-full text-center">Experience</a></li>
+                    <li><a href="index.html#education" class="nav-item block w-full text-center">Education</a></li>
+                    <li><a href="index.html#contact" class="nav-item block w-full text-center">Contact</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between z-10">
+                <div class="text-left md:w-1/2">
+                    <p class="hero-intro text-xl mb-2 text-[#8c8cff]"><i class="fas fa-hand-sparkles mr-2"></i>Hello,
+                        I'm</p>
+                    <h1 class="hero-name text-5xl md:text-7xl font-bold mb-4 gradient-text leading-tight">Nitin Kumar
+                        Gond</h1>
+
+                    <!-- Text for the typing animation -->
+                    <p class="hero-dynamic-text text-2xl md:text-3xl text-gray-200 font-medium mb-8">
+                        <span id="typed-element"></span>
+                    </p>
+
+                    <div class="hero-socials flex space-x-4 mb-8 text-3xl">
+                        <a href="https://linkedin.com/in/nitingond" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/nitingond1001" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://leetcode.com/nitin_11" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i class="fas fa-code"></i></a>
+                        <a href="https://auth.geeksforgeeks.org/user/nitingond" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i
+                                class="fas fa-laptop-code"></i></a>
+                    </div>
+                    <div class="hero-buttons flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button
+                            class="glow-button text-white px-8 py-3 rounded-full text-lg font-semibold flex items-center justify-center">
+                            View My Work <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                        <a href="Nitin_Gond_Resume.pdf" target="_blank"
+                            class="glow-button text-white px-8 py-3 rounded-full text-lg font-semibold flex items-center justify-center">
+                            Resume <i class="fas fa-download ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block md:w-1/2 relative h-full">
+                    <canvas id="matrix-canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+                </div>
+            </div>
+        </section>
+        <div class="shiny-divider"></div>
+
+        <!-- DELETE THIS EMPTY SECTION -->
+        <section class="hero-section main-content">
+            <!-- Hero content -->
+        </section>
+        <!-- END OF SECTION TO DELETE -->
+
+        <!-- =================================================================== -->
+        <!-- ABOUT SECTION -->
+        <!-- =================================================================== -->
+        <section id="about" class="content-section">
+            <div class="container mx-auto px-4">
+                <h2 class="section-header">About Me</h2>
+                <div class="grid md:grid-cols-5 gap-12 items-center">
+                    <!-- Left Column: Image -->
+                    <div class="md:col-span-2">
+                        <div class="about-image-container">
+                            <img src="profile.jpg" alt="A professional photo of Nitin Kumar Gond" class="about-image">
+                        </div>
+                    </div>
+                    <!-- Right Column: Text Content -->
+                    <div class="md:col-span-3 about-text-container">
+                        <h3 class="text-3xl font-bold mb-4 gradient-text">Crafting Digital Experiences</h3>
+                        <p>
+                            I'm Nitin Gond, a Computer Science graduate and aspiring Software Engineer focused on
+                            backend development and DSA.
+                            I specialize in Java and Spring Boot, and I'm actively building real-world projects like a
+                            Restaurant Table Reservation System.
+                            I'm also consistently practicing DSA to prepare for roles in product-based companies.
+                            I enjoy solving complex problems, writing clean code, and learning by building.
+                            Let's connect if you're into Java, backend systems, or LeetCode challenges!
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <div class="shiny-divider"></div>
+        <!-- =================================================================== -->
+        <!-- SKILLS SECTION -->
+        <!-- =================================================================== -->
+        <section id="skills" class="content-section container mx-auto px-4 md:px-0">
+            <h2 class="section-header gradient-text text-center">My Skills</h2>
+
+            <!-- Languages -->
+            <h3 class="skills-subtitle">Languages</h3>
+            <div class="tech-stack-slider-outer mt-4 mb-8">
+                <div class="tech-stack-slider languages-slider flex items-center">
+                    <div class="tech-item"><i class="fab fa-java"></i><span>Java</span></div>
+                    <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="tech-item"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+                    <div class="tech-item"><i class="fab fa-html5"></i><span>HTML</span></div>
+                    <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
+                    <div class="tech-item"><i class="fab fa-android"></i><span>Kotlin</span></div>
+                </div>
+            </div>
+
+            <!-- Frameworks -->
+            <h3 class="skills-subtitle">Frameworks & Libraries</h3>
+            <div class="tech-stack-slider-outer mt-4 mb-8">
+                <div class="tech-stack-slider frameworks-slider flex items-center">
+                    <div class="tech-item"><i class="fab fa-react"></i><span>React.js</span></div>
+                    <div class="tech-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+                </div>
+            </div>
+
+            <!-- Databases & Tools -->
+            <h3 class="skills-subtitle">Databases & Tools</h3>
+            <div class="tech-stack-slider-outer mt-4 mb-8">
+                <div class="tech-stack-slider databases-tools-slider flex items-center">
+                    <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-item"><i class="fas fa-database"></i><span>MongoDB</span></div>
+                    <div class="tech-item"><i class="fab fa-github"></i><span>GitHub</span></div>
+                    <div class="tech-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
+                </div>
+            </div>
+        </section>
+        <div class="shiny-divider"></div>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 px-4 md:px-0 container mx-auto">
+            <h2 class="section-header gradient-text text-center">My Projects</h2>
+            <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
+                <!-- Project Card Example -->
+                <div class="project-card group relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-[#24143aee] to-[#1a1a2eec] border border-[#a365f733] transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="project-card-inner p-7 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="project-icon bg-[#a365f7] bg-opacity-20 rounded-full p-3 mr-3 text-3xl text-[#c471ed] shadow-md">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-[#8c8cff] flex-1">Restaurant Table Reservation System
+                            </h3>
+                        </div>
+                        <p class="text-gray-300 text-base mb-4 flex-1">
+                            Building a full-stack restaurant reservation system with dynamic tables, real-time booking,
+                            authentication, and a management dashboard.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Nodemailer</span>
+                        </div>
+                        <ul class="project-features text-gray-400 text-sm mb-4 space-y-1">
+                            <li>• Real-time booking & modification</li>
+                            <li>• Role-based access control</li>
+                            <li>• Automated email notifications</li>
+                            <li>• Scalable RESTful APIs</li>
+                        </ul>
+                        <div class="mt-auto flex space-x-3">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Card Example -->
+                <div class="project-card group relative overflow-hidden rounded-2xl shadow-lg bg-gradient-to-br from-[#24143aee] to-[#1a1a2eec] border border-[#a365f733] transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                    <div class="project-card-inner p-7 flex flex-col h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="project-icon bg-[#a365f7] bg-opacity-20 rounded-full p-3 mr-3 text-3xl text-[#c471ed] shadow-md">
+                                <i class="fas fa-cloud-sun"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-[#8c8cff] flex-1">Weather Forecasting App</h3>
+                        </div>
+                        <p class="text-gray-300 text-base mb-4 flex-1">
+                            Scalable weather app delivering real-time updates for 100+ cities, built with Jetpack Compose
+                            and Kotlin.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">Kotlin</span>
+                            <span class="tech-badge">Android SDK</span>
+                            <span class="tech-badge">Jetpack Compose</span>
+                        </div>
+                        <ul class="project-features text-gray-400 text-sm mb-4 space-y-1">
+                            <li>• Real-time weather updates</li>
+                            <li>• Responsive UI</li>
+                            <li>• Efficient state management</li>
+                        </ul>
+                        <div class="mt-auto flex space-x-3">
+                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more project cards as needed -->
+            </div>
+        </section>
+        <div class="shiny-divider"></div>
+
+        <!-- Experience Section -->
+        <section id="experience" class="content-section container mx-auto px-4">
+            <h2 class="section-header gradient-text text-center">Experience</h2>
+            <div class="experience-timeline mt-12">
+                <!-- Experience Item 1 -->
+                <div class="experience-item">
+                    <div class="experience-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <h3 class="text-2xl font-bold text-gray-200">Guest Relations Officer</h3>
+                            <p class="experience-company">Zolo Stays</p>
+                        </div>
+                        <p class="experience-date">Aug 2024 – Mar 2025 | Bengaluru, India</p>
+                        <ul class="experience-details">
+                            <li>Served as the primary point of contact for residents, ensuring a seamless living experience by addressing concerns and service requests promptly.</li>
+                            <li>Maintained high customer satisfaction by managing check-ins/check-outs and coordinating with facility teams for timely issue resolution.</li>
+                            <li>Handled data entry and tracking using internal tools, maintaining accurate records for occupancy, payments, and resident feedback.</li>
+                            <li>Supported backend operations and collaborated with cross-functional teams to improve service quality and enhance operational efficiency.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Add more experience items as needed -->
+            </div>
+        </section>
+        <div class="shiny-divider"></div>
+
+        <!-- Education Section -->
+        <section id="education" class="content-section container mx-auto px-4">
+            <h2 class="section-header gradient-text text-center">Education</h2>
+            <div class="timeline">
+                <!-- Education Entry 1 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-semibold text-gray-300">Bachelor of Technology in Computer Science</h3>
+                        <p class="text-gray-400">Lovely Professional University | Phagwara, Punjab | 2020 - 2024</p>
+                        <p class="text-gray-400 mt-2">Relevant coursework: Data Structures and Algorithms, Database Management, Software Engineering.</p>
+                    </div>
+                </div>
+
+                <!-- Education Entry 2 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="text-xl font-semibold text-gray-300">Higher Secondary</h3>
+                        <p class="text-gray-400">St. Mary's Inter College | Gorakhpur, U.P | 2019 - 2020</p>
+                        <p class="text-gray-400 mt-2">Relevant coursework: Math, Science, Computer Science.</p>
+                    </div>
+                </div>
+                <!-- Add more education entries as needed -->
+            </div>
+        </section>
+        <div class="shiny-divider"></div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 md:px-0 container mx-auto">
+            <h2 class="section-header gradient-text">Get In Touch</h2>
+            <div class="card p-8 mt-10 max-w-2xl mx-auto text-center">
+                <p class="text-gray-300 mb-6 leading-relaxed">
+                    I'm currently seeking new opportunities and exciting collaborations. Feel free to reach out!
+                </p>
+                <div class="flex flex-col space-y-4 items-center">
+                    <p class="text-lg text-gray-200"><i class="fas fa-envelope mr-2 text-[#8c8cff]"></i>
+                        nitingond.1602@gmail.com</p>
+                    <p class="text-lg text-gray-200"><i class="fas fa-phone mr-2 text-[#8c8cff]"></i> +91-8081094028</p>
+                    <div class="flex space-x-6 mt-4 text-3xl">
+                        <a href="https://linkedin.com/in/nitingond" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/nitingond1001" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://leetcode.com/nitin_11" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i class="fas fa-code"></i></a>
+                        <a href="https://auth.geeksforgeeks.org/user/nitingond" target="_blank"
+                            class="text-gray-400 hover:text-[#8c8cff] transition-colors"><i
+                                class="fas fa-laptop-code"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main> <!-- End of Main Content Wrapper -->
+
+    <!-- Slide-out Contact Panel -->
+    <div id="contact-panel" class="contact-panel">
+        <button id="close-panel-btn" class="close-btn">&times;</button>
+        <div class="panel-content">
+            <img src="profile.jpg" alt="Nitin Kumar Gond" class="panel-photo">
+            <h3 class="panel-name">Nitin Kumar Gond</h3>
+            <p class="panel-title">Full-Stack Developer</p>
+            <div class="panel-contact-links">
+                <a href="mailto:nitingond.1602@gmail.com" class="contact-link"><i class="fas fa-envelope fa-fw"></i>
+                    Email Me</a>
+                <a href="https://linkedin.com/in/nitingond" target="_blank" class="contact-link"><i
+                        class="fab fa-linkedin fa-fw"></i> LinkedIn</a>
+                <a href="https://github.com/nitingond" target="_blank" class="contact-link"><i
+                        class="fab fa-github fa-fw"></i> GitHub</a>
+                <a href="tel:+918081094028" class="contact-link"><i class="fas fa-phone fa-fw"></i> Call Me</a>
+            </div>
+        </div>
+    </div>
+    <div id="panel-overlay" class="panel-overlay"></div>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a2e] py-8 mt-10 text-center text-gray-400 text-sm rounded-t-xl">
+        <p>&copy; 2025 Nitin Kumar Gond. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
