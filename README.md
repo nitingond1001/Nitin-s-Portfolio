@@ -4,7 +4,7 @@ Welcome to the source code for my personal developer portfolio. This project sho
 
 **[View Live Demo](https://github.com/nitingond1001/Nitin-s-Portfolio.git)** 👈
 
-[Portfolio Screenshot](D:\Download_D\my-portfolio\screenshot.png)
+![Portfolio Screenshot](./screenshot.png)
 
 ---
 
@@ -61,4 +61,4 @@ Feel free to reach out if you'd like to connect or collaborate on a project!
 
 ---
 
-*This project was created by Nitin
+*This project was created by Nitin Kumar Gond - [GitHub Profile](https://github.com/nitingond1001)*
