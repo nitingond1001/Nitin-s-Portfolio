@@ -5,7 +5,6 @@ Welcome to the source code for my personal developer portfolio. This project sho
 **[View Live Demo](https://github.com/nitingond1001/Nitin-s-Portfolio.git)** 👈 (Replace with your GitHub Pages link after deployment)
 
 ![Portfolio Screenshot](screenshot.png)
-*(Suggestion: Add a screenshot of your portfolio named `screenshot.png` to the project folder)*
 
 ---
 
