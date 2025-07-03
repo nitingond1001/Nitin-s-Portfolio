@@ -2,7 +2,8 @@
 
 Welcome to the source code for my personal developer portfolio. This project showcases my skills, projects, and experience in a visually appealing and interactive format. It's designed to be a comprehensive representation of my capabilities as an aspiring software engineer.
 
-**[View Live Demo](https://github.com/nitingond1001/Nitin-s-Portfolio.git)** 👈
+**[View Live Demo](https://nitingond1001.github.io/Nitin-s-Portfolio/)** 👈
+
 
 ![Portfolio Screenshot](./screenshot.png)
 
