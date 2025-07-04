@@ -357,5 +357,43 @@ document.addEventListener('DOMContentLoaded', function() {
     setupContinuousSlider('frameworks-slider');
     setupContinuousSlider('databases-tools-slider');
     setupContinuousSlider('tools-slider');
+    setupContinuousSlider('soft-skills-slider'); // Also added soft skills slider here
 
+    // --- Project Slider Logic ---
+    const slides = document.querySelectorAll('.project-slide');
+    if (slides.length > 0) {
+        const nextBtn = document.getElementById('next-slide');
+        const prevBtn = document.getElementById('prev-slide');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        function updateSliderPositions() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('center', 'left', 'right', 'hidden');
+
+                if (index === currentIndex) {
+                    slide.classList.add('center');
+                } else if (index === (currentIndex - 1 + totalSlides) % totalSlides) {
+                    slide.classList.add('left');
+                } else if (index === (currentIndex + 1) % totalSlides) {
+                    slide.classList.add('right');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateSliderPositions();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateSliderPositions();
+        });
+
+        // Initialize slider
+        updateSliderPositions();
+    }
 });
